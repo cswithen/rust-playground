@@ -4,16 +4,21 @@
 // standard library to be used within the code
 // use std::mem;
 
-fn operators()
-{
+// global variables
+const MEANING_OF_LIFE: u8 = 42; // this has no fixed address
+
+// static variables
+static mut Z: i32 = 123; // has a fixed address
+
+fn operators() {
     // arithmetic
 
-    let mut a = 2+3*4; // +-*/
+    let mut a = 2 + 3 * 4; // +-*/
     println!("a = {}", a);
-    a = a+1; // does not support -- or ++
-    a -= 2;// -= += *= /= %=
+    a = a + 1; // does not support -- or ++
+    a -= 2; // -= += *= /= %=
 
-    println!("remainder of {} / {} = {}", a, 3, (a%3));
+    println!("remainder of {} / {} = {}", a, 3, (a % 3));
 
     let a_cubed = i32::pow(a, 3);
     println!("a_cubed = {} ", a_cubed);
@@ -41,5 +46,11 @@ fn operators()
 }
 
 fn main() {
-    operators()
+    operators();
+    println!("global variable, {}", MEANING_OF_LIFE);
+
+    unsafe {
+        Z = 777;
+        println!("static variable, {}", Z);
+    }
 }
